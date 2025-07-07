@@ -7,12 +7,15 @@ import FilterPanel from "../Filters/FilterPanel";
 import ReportModal from "../Modals/ReportModal";
 import { sampleEvents } from "../../data/sampleEvents";
 import { useEventData } from "../../hooks/useEventData";
+import ChatbotModal from "../Chatbot/ChatbotModal";
 import "./CityPulseDashboard.css";
+import "../Chatbot/ChatbotModal.css";
 
 function CityPulseDashboard() {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [activeFilter, setActiveFilter] = useState("All");
   const [showReportModal, setShowReportModal] = useState(false);
+  const [showChatbotModal, setShowChatbotModal] = useState(false);
   const [sidebarTab, setSidebarTab] = useState("feed");
 
   const { events, loading, error } = useEventData();
@@ -35,6 +38,12 @@ function CityPulseDashboard() {
             onEventSelect={setSelectedEvent}
           />
           <button
+            className="chatbot-btn"
+            onClick={() => setShowChatbotModal(true)}
+          >
+            💬 Chat with Bot
+          </button>
+          <button
             className="report-btn"
             onClick={() => setShowReportModal(true)}
           >
@@ -49,6 +58,10 @@ function CityPulseDashboard() {
 
       {showReportModal && (
         <ReportModal onClose={() => setShowReportModal(false)} />
+      )}
+
+      {showChatbotModal && (
+        <ChatbotModal onClose={() => setShowChatbotModal(false)} />
       )}
     </div>
   );
