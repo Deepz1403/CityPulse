@@ -21,13 +21,17 @@ const TrendingItems = () => {
     <div className="trending-items">
       {trendingData.map((item) => (
         <div key={item.id} className="trending-item">
-          <span className="trending-emoji">{item.emoji}</span>
-          <div>
-            <strong>{item.title}</strong>
-            <p>{item.description}</p>
+          <div className="trending-icon-wrapper">
+            <span className="trending-emoji">{item.emoji}</span>
+            <span className="trending-badge">🔥</span>
+          </div>
+          <div className="trending-details">
+            <strong className="trending-title">{item.title}</strong>
+            <p className="trending-description">{item.description}</p>
           </div>
         </div>
       ))}
+      <button className="view-all-btn">View All Trends</button>
     </div>
   );
 };

@@ -1,8 +1,8 @@
 /* src/components/Filters/FilterPanel.css */
 .filter-panel {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 90px;
+    right: 30px;
     background: white;
     padding: 1rem;
     border-radius: 12px;
@@ -17,38 +17,43 @@
     font-size: 1rem;
   }
   
-  .filter-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+  .filter-dropdown {
+    position: relative;
+    width: 100%;
   }
   
-  .filter-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
+  .filter-select {
+    width: 100%;
+    padding: 0.75rem 1rem;
     border: 2px solid #e0e0e0;
-    border-radius: 25px;
-    background: white;
+    border-radius: 8px;
+    background-color: #fff;
+    font-size: 1rem;
+    color: #333;
+    appearance: none; /* Remove default browser styling */
+    -webkit-appearance: none;
+    -moz-appearance: none;
     cursor: pointer;
+    outline: none;
     transition: all 0.3s ease;
-    font-size: 0.9rem;
-    font-weight: 500;
   }
   
-  .filter-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  .filter-select:hover {
+    border-color: #4285F4;
   }
   
-  .filter-btn.active {
-    border-color: transparent;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  .filter-select:focus {
+    border-color: #4285F4;
+    box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.2);
   }
   
-  .filter-icon {
-    font-size: 1.1rem;
+  /* Custom arrow for dropdown */
+  .filter-dropdown::after {
+    content: '▼';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #666;
   }
-  

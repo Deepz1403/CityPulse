@@ -72,17 +72,16 @@
 
 /* Professional Filter Panel */
 .filter-panel {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  padding: 16px;
+  width: 320px;
+  background: #FFFFFF;
+  border-left: 1px solid #E8EAED;
+  display: flex;
+  flex-direction: column;
+  margin: 8px 8px 8px 0;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-  z-index: 1000;
-  max-width: 320px;
-  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  overflow: hidden;
+  padding: 16px;
 }
 
 .filter-panel h4 {
@@ -169,10 +168,10 @@
 .sidebar {
   width: 380px;
   background: #FFFFFF;
-  border-left: 1px solid #E8EAED;
+  border-right: 1px solid #E8EAED;
   display: flex;
   flex-direction: column;
-  margin: 8px 8px 8px 0;
+  margin: 8px 0 8px 8px;
   border-radius: 12px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   overflow: hidden;

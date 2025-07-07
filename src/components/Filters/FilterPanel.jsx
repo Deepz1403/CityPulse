@@ -6,25 +6,19 @@ import "./FilterPanel.css";
 const FilterPanel = ({ activeFilter, onFilterChange }) => {
   return (
     <div className="filter-panel">
-      <h4>Event Filters</h4>
-      <div className="filter-buttons">
-        {filters.map((filter) => (
-          <button
-            key={filter.name}
-            onClick={() => onFilterChange(filter.name)}
-            className={`filter-btn ${
-              activeFilter === filter.name ? "active" : ""
-            }`}
-            style={{
-              backgroundColor:
-                activeFilter === filter.name ? filter.color : "#fff",
-              color: activeFilter === filter.name ? "#fff" : "#333",
-            }}
-          >
-            <span className="filter-icon">{filter.icon}</span>
-            {filter.name}
-          </button>
-        ))}
+      <h4>Filter Events</h4>
+      <div className="filter-dropdown">
+        <select
+          className="filter-select"
+          value={activeFilter}
+          onChange={(e) => onFilterChange(e.target.value)}
+        >
+          {filters.map((filter) => (
+            <option key={filter.name} value={filter.name}>
+              {filter.icon} {filter.name}
+            </option>
+          ))}
+        </select>
       </div>
     </div>
   );

@@ -27,18 +27,13 @@ function CityPulseDashboard() {
       <Header />
 
       <div className="main-content">
+        <Sidebar activeTab={sidebarTab} onTabChange={setSidebarTab} />
         <div className="map-section">
           <MapContainer
             events={filteredEvents}
             selectedEvent={selectedEvent}
             onEventSelect={setSelectedEvent}
           />
-
-          <FilterPanel
-            activeFilter={activeFilter}
-            onFilterChange={setActiveFilter}
-          />
-
           <button
             className="report-btn"
             onClick={() => setShowReportModal(true)}
@@ -46,8 +41,10 @@ function CityPulseDashboard() {
             📸 Report Incident
           </button>
         </div>
-
-        <Sidebar activeTab={sidebarTab} onTabChange={setSidebarTab} />
+        <FilterPanel
+          activeFilter={activeFilter}
+          onFilterChange={setActiveFilter}
+        />
       </div>
 
       {showReportModal && (
