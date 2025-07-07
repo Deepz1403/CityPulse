@@ -1,0 +1,70 @@
+/* src/components/Common/Common.css */
+.urgency-badge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-left: 0.5rem;
+  }
+  
+  .urgency-badge.high {
+    background: #fef2f2;
+    color: #dc2626;
+  }
+  
+  .urgency-badge.medium {
+    background: #fffbeb;
+    color: #d97706;
+  }
+  
+  .urgency-badge.low {
+    background: #f0fdf4;
+    color: #16a34a;
+  }
+  
+  .verification-badge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+  
+  .verification-badge.verified {
+    background: #f0fdf4;
+    color: #16a34a;
+  }
+  
+  .verification-badge.pending {
+    background: #fffbeb;
+    color: #d97706;
+  }
+  
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary {
+    background: #4285F4;
+    color: white;
+  }
+  
+  .btn-secondary {
+    background: #f8f9fa;
+    color: #333;
+    border: 2px solid #e0e0e0;
+  }
+  
+  .btn-primary:hover {
+    background: #3367d6;
+  }
+  
+  .btn-secondary:hover {
+    background: #e9ecef;
+  }
+  

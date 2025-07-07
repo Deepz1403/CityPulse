@@ -1,43 +1,309 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#4285F4" />
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="CityPulse - Real-time city data synthesis and intelligent urban monitoring dashboard for Bengaluru" />
+  <meta name="keywords" content="city data, urban monitoring, traffic, events, Bengaluru, real-time dashboard" />
+  <meta name="author" content="CityPulse Team" />
+  
+  <!-- Open Graph Meta Tags for Social Sharing -->
+  <meta property="og:title" content="CityPulse - Intelligent City Data Dashboard" />
+  <meta property="og:description" content="Live, synthesized, and intelligent view of Bengaluru city data - traffic, events, and citizen reports" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://citypulse.app" />
+  <meta property="og:image" content="%PUBLIC_URL%/og-image.png" />
+  
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CityPulse - Intelligent City Data Dashboard" />
+  <meta name="twitter:description" content="Real-time city monitoring with AI-powered data synthesis" />
+  <meta name="twitter:image" content="%PUBLIC_URL%/twitter-image.png" />
+  
+  <!-- Apple Touch Icon -->
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png" />
+  
+  <!-- Manifest for PWA -->
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  
+  <!-- Preconnect to External Resources -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://tile.openstreetmap.org">
+  
+  <!-- Google Fonts - Professional Typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <!-- Leaflet CSS for Maps -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+  
+  <!-- Custom CSS Variables -->
+  <style>
+    :root {
+      /* Google Color Palette */
+      --primary-blue: #4285F4;
+      --primary-green: #34A853;
+      --primary-red: #EA4335;
+      --primary-yellow: #FBBC04;
+      
+      /* Neutral Colors */
+      --neutral-dark: #202124;
+      --neutral-medium: #5F6368;
+      --neutral-light: #F8F9FA;
+      --neutral-white: #FFFFFF;
+      --neutral-border: #E8EAED;
+      
+      /* Semantic Colors */
+      --success: #34A853;
+      --warning: #FBBC04;
+      --error: #EA4335;
+      --info: #4285F4;
+      
+      /* Typography */
+      --font-primary: 'Google Sans', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono: 'Roboto Mono', 'Courier New', monospace;
+      
+      /* Spacing */
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 16px;
+      --spacing-lg: 24px;
+      --spacing-xl: 32px;
+      
+      /* Border Radius */
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+      --radius-pill: 50px;
+      
+      /* Shadows */
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.15);
+      --shadow-lg: 0 8px 24px rgba(0,0,0,0.2);
+      
+      /* Transitions */
+      --transition-fast: 0.15s cubic-bezier(0.4, 0.0, 0.2, 1);
+      --transition-normal: 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+      --transition-slow: 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+    }
+    
+    /* Global Styles */
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-primary);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background-color: var(--neutral-light);
+      color: var(--neutral-dark);
+      line-height: 1.5;
+    }
+    
+    /* Loading Screen */
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-green) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      color: white;
+      font-family: var(--font-primary);
+    }
+    
+    .loading-logo {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      animation: pulse 2s infinite;
+    }
+    
+    .loading-text {
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-top: 3px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    /* Hide loading screen when app loads */
+    .app-loaded .loading-screen {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease-out;
+    }
+    
+    /* Scrollbar Styling */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: var(--neutral-light);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--neutral-medium);
+      border-radius: var(--radius-sm);
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--neutral-dark);
+    }
+    
+    /* Focus Styles for Accessibility */
+    *:focus {
+      outline: 2px solid var(--primary-blue);
+      outline-offset: 2px;
+    }
+    
+    /* Print Styles */
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+    }
+    
+    /* High Contrast Mode Support */
+    @media (prefers-contrast: high) {
+      :root {
+        --neutral-border: #000000;
+        --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+        --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+        --shadow-lg: 0 8px 24px rgba(0,0,0,0.5);
+      }
+    }
+    
+    /* Reduced Motion Support */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+  
+  <title>CityPulse - Intelligent City Data Dashboard</title>
+</head>
+<body>
+  <!-- No JavaScript Fallback -->
+  <noscript>
+    <div style="padding: 2rem; text-align: center; font-family: var(--font-primary);">
+      <h1>🌆 CityPulse</h1>
+      <p>You need to enable JavaScript to run this application.</p>
+      <p>CityPulse provides real-time city data synthesis and intelligent urban monitoring.</p>
+    </div>
+  </noscript>
+  
+  <!-- Loading Screen -->
+  <div class="loading-screen" id="loading-screen">
+    <div class="loading-logo">🌆</div>
+    <div class="loading-text">CityPulse</div>
+    <div class="loading-text" style="font-size: 1rem; opacity: 0.8;">Loading intelligent city dashboard...</div>
+    <div class="loading-spinner"></div>
+  </div>
+  
+  <!-- Main App Container -->
+  <div id="root"></div>
+  
+  <!-- Service Worker Registration -->
+  <script>
+    // Hide loading screen when app loads
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.body.classList.add('app-loaded');
+        setTimeout(function() {
+          const loadingScreen = document.getElementById('loading-screen');
+          if (loadingScreen) {
+            loadingScreen.remove();
+          }
+        }, 500);
+      }, 1000);
+    });
+    
+    // Register Service Worker for PWA
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js')
+          .then(function(registration) {
+            console.log('SW registered: ', registration);
+          })
+          .catch(function(registrationError) {
+            console.log('SW registration failed: ', registrationError);
+          });
+      });
+    }
+    
+    // Performance monitoring
+    window.addEventListener('load', function() {
+      if ('performance' in window) {
+        const perfData = performance.getEntriesByType('navigation')[0];
+        console.log('Page load time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
+      }
+    });
+    
+    // Error handling
+    window.addEventListener('error', function(e) {
+      console.error('Global error:', e.error);
+      // You can send this to your analytics service
+    });
+    
+    // Unhandled promise rejection handling
+    window.addEventListener('unhandledrejection', function(e) {
+      console.error('Unhandled promise rejection:', e.reason);
+      // You can send this to your analytics service
+    });
+  </script>
+  
+  <!-- Analytics (Optional - Replace with your analytics code) -->
+  <script>
+    // Google Analytics 4 (Replace GA_MEASUREMENT_ID with your actual ID)
+    /*
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    
+    ga('create', 'GA_MEASUREMENT_ID', 'auto');
+    ga('send', 'pageview');
+    */
+  </script>
+</body>
 </html>
