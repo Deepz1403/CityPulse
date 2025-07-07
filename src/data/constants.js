@@ -27,4 +27,6 @@ export const filters = [
   { name: "Festival", icon: "🎉", color: "#34A853" },
   { name: "Infrastructure", icon: "🔧", color: "#9AA0A6" },
   { name: "Event", icon: "📍", color: "#FF6D01" },
+  { name: "Rain", icon: "🌧️", color: "#4A90E2" },
+  { name: "City Sentiment", icon: "😊", color: "#7ED321" },
 ];
